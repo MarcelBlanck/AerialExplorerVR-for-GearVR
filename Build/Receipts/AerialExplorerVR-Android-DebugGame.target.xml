@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BuildReceipt xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Properties>
+    <Property Name="TargetName" Value="AerialExplorerVR" />
+    <Property Name="Platform" Value="Android" />
+    <Property Name="Configuration" Value="DebugGame" />
+    <Property Name="Precompile" Value="False" />
+  </Properties>
+  <BuildProducts>
+    <BuildProduct Path="$(ProjectDir)\Binaries\Android\AerialExplorerVR-Android-DebugGame-armv7-es2.so" Type="Executable" />
+    <BuildProduct Path="$(ProjectDir)\Binaries\Android\AerialExplorerVR-Android-DebugGame-armv7-es2.apk" Type="Executable" />
+    <BuildProduct Path="$(EngineDir)\Plugins\Media\AndroidMedia\Binaries\Android\AerialExplorerVR-AndroidMedia-armv7-es2.a" Type="StaticLibrary" />
+    <BuildProduct Path="$(EngineDir)\Plugins\Runtime\AndroidDeviceProfileSelector\Binaries\Android\AerialExplorerVR-AndroidDeviceProfileSelector-armv7-es2.a" Type="StaticLibrary" />
+    <BuildProduct Path="$(EngineDir)\Plugins\Runtime\AndroidMoviePlayer\Binaries\Android\AerialExplorerVR-AndroidMoviePlayer-armv7-es2.a" Type="StaticLibrary" />
+    <BuildProduct Path="$(EngineDir)\Plugins\Runtime\GearVR\Binaries\Android\AerialExplorerVR-GearVR-armv7-es2.a" Type="StaticLibrary" />
+  </BuildProducts>
+  <RuntimeDependencies />
+  <bRequireDependenciesToExist>true</bRequireDependenciesToExist>
+</BuildReceipt>
