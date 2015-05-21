@@ -24,10 +24,6 @@
 			"Enabled": false
 		},
 		{
-			"Name": "MediaPlayerEditor",
-			"Enabled": false
-		},
-		{
 			"Name": "SpeedTreeImporter",
 			"Enabled": false
 		},
@@ -49,18 +45,6 @@
 		},
 		{
 			"Name": "AppleMoviePlayer",
-			"Enabled": false
-		},
-		{
-			"Name": "AvfMedia",
-			"Enabled": false
-		},
-		{
-			"Name": "WmfMedia",
-			"Enabled": false
-		},
-		{
-			"Name": "WindowsMoviePlayer",
 			"Enabled": false
 		},
 		{
@@ -122,9 +106,14 @@
 		{
 			"Name": "SteamVR",
 			"Enabled": false
+		},
+		{
+			"Name": "UObjectPlugin",
+			"Enabled": false
 		}
 	],
 	"TargetPlatforms": [
-		"Android"
+		"Android",
+		"WindowsNoEditor"
 	]
 }
