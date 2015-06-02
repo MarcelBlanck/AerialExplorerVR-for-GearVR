@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="custom_rules">
+<target name="pre-compile">
+	<copy failonerror="false" todir="${distDir}/armeabi-v7a">
+		<fileset dir="${libs}/armeabi-v7a">
+			<include name="**/*.so"/>
+		</fileset>
+	</copy>
+</target>
+</project>
