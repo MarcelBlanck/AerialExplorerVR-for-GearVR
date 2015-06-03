@@ -12,21 +12,21 @@ class AERIALEXPLORERVR_API ADroneControlCharacter : public ACharacter
 	GENERATED_BODY()
 
 public:
-	UPROPERTY()
+	UPROPERTY(Category = Drone, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* Camera;
 
-	UPROPERTY()
+	UPROPERTY(Category = Drone, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	USpringArmComponent* SpringArm;
 
-	UPROPERTY()
+	UPROPERTY(Category = Drone, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UStaticMeshComponent* ScreenMesh;
 
-	UPROPERTY()
+	UPROPERTY(Category = Drone, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UDroneApiComponent *DroneApi;
 
 	ADroneControlCharacter(const FObjectInitializer& ObjectInitializer);
 
-	virtual void OnConstruction(const FTransform& Transform) override;
+	virtual void BeginPlay() override;
 
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
 
@@ -36,5 +36,5 @@ public:
 
 private:
 	class UMaterial* MediaTextureMaterial;
-	class UMediaTexture* MediaTexture;
+	class UDroneLiveVideoMediaTexture* MediaTexture;
 };

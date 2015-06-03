@@ -3,10 +3,10 @@
 #include "AerialExplorerVR.h"
 #include "DroneControlCharacter.h"
 #include "../DJI/DroneLiveVideoMediaTexture.h"
-#include "MediaTexture.h"
 
 ADroneControlCharacter::ADroneControlCharacter(const FObjectInitializer& ObjectInitializer) :
-	Super(ObjectInitializer)
+	Super(ObjectInitializer),
+	MediaTexture(nullptr)
 {
 	PrimaryActorTick.bCanEverTick = true;
 
@@ -47,25 +47,31 @@ ADroneControlCharacter::ADroneControlCharacter(const FObjectInitializer& ObjectI
 	ScreenMesh->BodyInstance.SetCollisionProfileName("NoCollision");
 	ScreenMesh->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 	
-	ConstructorHelpers::FObjectFinder<UMaterial> MediaTextureMatFinder(TEXT("Material'/Game/Eperimental/ExperimentalMediaPlayer_Tex_Mat.ExperimentalMediaPlayer_Tex_Mat'"));
-	checkf(MediaTextureMatFinder.Object, TEXT("Did not find Material'/Game/Eperimental/ExperimentalMediaPlayer_Tex_Mat.ExperimentalMediaPlayer_Tex_Mat' - Maybe the asset was moved or renamed."));
+	ConstructorHelpers::FObjectFinder<UMaterial> MediaTextureMatFinder(TEXT("Material'/Game/Eperimental/MAT_ExperimentalMediaPlayer.MAT_ExperimentalMediaPlayer'"));
+	checkf(MediaTextureMatFinder.Object, TEXT("Did not find Material'/Game/Eperimental/MAT_ExperimentalMediaPlayer.MAT_ExperimentalMediaPlayer' - Maybe the asset was moved or renamed."));
 	MediaTextureMaterial = MediaTextureMatFinder.Object;
 
-	MediaTexture = NewObject<UMediaTexture>(this, TEXT("AndroidVideoStreamTexture"));
+#if PLATFORM_ANDROID == 1
+	MediaTexture = NewObject<UDroneLiveVideoMediaTexture>(this, TEXT("DroneLiveVideoMediaTexture"));
 	MediaTexture->AddressX = TA_Clamp;
 	MediaTexture->AddressY = TA_Clamp;
 	MediaTexture->ClearColor = FLinearColor::Black;
 	MediaTexture->VideoTrackIndex = 0U;
+#endif
 
 	DroneApi = ObjectInitializer.CreateDefaultSubobject<UDroneApiComponent>(this, TEXT("DroneApi"));
 	DroneApi->OnGimbalRotationChanged.AddDynamic(this, &ADroneControlCharacter::OnGimbalRotationChanged);
 }
 
-void ADroneControlCharacter::OnConstruction(const FTransform& Transform)
+void ADroneControlCharacter::BeginPlay()
 {
+	Super::BeginPlay();
+#if PLATFORM_ANDROID == 1
 	UMaterialInstanceDynamic* MediaTextureMaterialInstance = UMaterialInstanceDynamic::Create(MediaTextureMaterial, this);
 	MediaTextureMaterialInstance->SetTextureParameterValue("MediaTexture", Cast<UTexture>(MediaTexture));
+	MediaTexture->StartVideoStreamProcessing();
 	ScreenMesh->SetMaterial(0, MediaTextureMaterialInstance);
+#endif
 }
 
 void ADroneControlCharacter::SetupPlayerInputComponent(UInputComponent* InputComponent)

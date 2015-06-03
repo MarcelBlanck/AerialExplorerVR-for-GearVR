@@ -10,10 +10,20 @@
  */
 UCLASS()
 class AERIALEXPLORERVR_API UDroneLiveVideoMediaTexture : public UMediaTexture
+#if PLATFORM_ANDROID == 1
+	, public IAndroidLiveVideoSink
+#endif
 {
 	GENERATED_BODY()
 
+#if PLATFORM_ANDROID == 1
+public:
+	virtual ~UDroneLiveVideoMediaTexture();
 
-	static UDroneLiveVideoMediaTexture* Instance;
-	
+	virtual void OnVideoFrameAvailable(const void* Buffer, uint32 BufferSize, uint32 Width, uint32 Height, uint32 DurationMs, uint32 TimeMs);
+
+	void StartVideoStreamProcessing();
+
+	void StopVideoStreamProcessing();
+#endif
 };
