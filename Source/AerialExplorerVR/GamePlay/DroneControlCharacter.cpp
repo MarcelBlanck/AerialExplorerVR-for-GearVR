@@ -19,18 +19,20 @@ ADroneControlCharacter::ADroneControlCharacter(const FObjectInitializer& ObjectI
 	Camera->bUsePawnControlRotation = 1U;	
 
 	DroneApi = ObjectInitializer.CreateDefaultSubobject<UDroneApiComponent>(this, TEXT("DroneApi"));
-	DroneApi->OnGimbalRotationChanged.AddDynamic(this, &ADroneControlCharacter::OnGimbalRotationChanged);
+	DroneApi->SetGimbalRotationChangedListener(this);
 }
 
 void ADroneControlCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 	for (TActorIterator<ARotatingVideoScreenActor> ActorItr(GetWorld()); ActorItr; ++ActorItr)
 	{
 		RotatingVideoScreenActor = *ActorItr;
 		break;
 	}
+
+	// DroneApi->OnGimbalRotationChanged.AddDynamic(this, &ADroneControlCharacter::OnGimbalRotationChanged);
 }
 
 void ADroneControlCharacter::SetupPlayerInputComponent(UInputComponent* InputComponent)
@@ -68,13 +70,17 @@ void ADroneControlCharacter::Tick(float DeltaTime)
 #endif	
 }
 
-void ADroneControlCharacter::OnGimbalRotationChanged(FRotator GimbalRotation)
+void ADroneControlCharacter::OnGimbalRotationChanged(FRotator & GimbalRotation)
 {
 #if PLATFORM_ANDROID == 1
+	UE_LOG(Generic, Warning, TEXT("Gimbal Rotation Delegated: %f Roll: %f Yaw: %f"),
+		GimbalRotation.Pitch, GimbalRotation.Roll, GimbalRotation.Yaw);
 	if (RotatingVideoScreenActor != nullptr)
 	{
 		// TODO Check that speed is slightly higher than gimbal rotation velocity
 		// Shouldn't overshoot do to contant updating.
+		UE_LOG(Generic, Warning, TEXT("Gimbal SetTargetRotation of screen: %f Roll: %f Yaw: %f"),
+			GimbalRotation.Pitch, GimbalRotation.Roll, GimbalRotation.Yaw);
 		RotatingVideoScreenActor->SetTargetRotation(GimbalRotation, 1.f);
 	}
 #endif

@@ -6,7 +6,12 @@
 #include "Math/Rotator.h"
 #include "DroneApiComponent.generated.h"
 
-
+class IGimbalRotationChangedListener
+{
+public:
+	virtual ~IGimbalRotationChangedListener() { };
+	virtual void OnGimbalRotationChanged(FRotator& GimbalRotation) = 0;
+};
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class AERIALEXPLORERVR_API UDroneApiComponent : public UActorComponent
@@ -28,6 +33,8 @@ public:
 
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;	
 
+	void SetGimbalRotationChangedListener(IGimbalRotationChangedListener *Listener);
+
 	/* Delegate to execute when the drone reports a changed GimbalRotation */
 	UPROPERTY(BlueprintAssignable)
 	FGimbalRotationChangedDelegate OnGimbalRotationChanged;
@@ -35,4 +42,6 @@ public:
 private:
 	FRotator LastGimbalRotation;
 	void UpdateGimbalRotation();
+
+	IGimbalRotationChangedListener * GimbalRotationChangedListener;
 };

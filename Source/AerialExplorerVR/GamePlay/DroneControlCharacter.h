@@ -7,7 +7,7 @@
 #include "DroneControlCharacter.generated.h"
 
 UCLASS()
-class AERIALEXPLORERVR_API ADroneControlCharacter : public ACharacter
+class AERIALEXPLORERVR_API ADroneControlCharacter : public ACharacter, public IGimbalRotationChangedListener
 {
 	GENERATED_BODY()
 
@@ -33,7 +33,7 @@ public:
 
 	void IncreaseScreenDistance();
 
-	void OnGimbalRotationChanged(FRotator GimbalRotation);
+	virtual void OnGimbalRotationChanged(FRotator & GimbalRotation) override;
 
 private:
 	bool HMD_FirstUpdate;

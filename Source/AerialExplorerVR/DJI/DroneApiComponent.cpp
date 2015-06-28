@@ -4,7 +4,8 @@
 #include "DroneApiComponent.h"
 
 UDroneApiComponent::UDroneApiComponent() :
-	LastGimbalRotation(ForceInitToZero)
+	LastGimbalRotation(ForceInitToZero),
+	GimbalRotationChangedListener(nullptr)
 {
 	bWantsBeginPlay = true;
 	PrimaryComponentTick.bCanEverTick = true;
@@ -36,6 +37,11 @@ void UDroneApiComponent::UpdateGimbalRotation()
 		OnGimbalRotationChanged.Broadcast(LastGimbalRotation);
 		UE_LOG(Generic, Warning, TEXT("Gimbal Rotation Initialized to Pitch: %f Roll: %f Yaw: %f"),
 			GimbalRotation.Pitch, GimbalRotation.Roll, GimbalRotation.Yaw);
+
+		if (GimbalRotationChangedListener != nullptr)
+		{
+			GimbalRotationChangedListener->OnGimbalRotationChanged(LastGimbalRotation);
+		}
 	}
 #else
 	OnGimbalRotationChanged.Broadcast(DebugFakeGimbalRotation);
@@ -51,4 +57,9 @@ void UDroneApiComponent::CommandDroneToSetGimbalRotation(FRotator const & Rotati
 	GimbalRotation.Yaw = Rotation.Yaw;
 	FAndroidMisc::CommandDroneToSetGimbalRotation(GimbalRotation);
 #endif
+}
+
+void UDroneApiComponent::SetGimbalRotationChangedListener(IGimbalRotationChangedListener *Listener)
+{
+	GimbalRotationChangedListener = Listener;
 }
