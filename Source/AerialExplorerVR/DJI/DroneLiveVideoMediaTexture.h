@@ -26,4 +26,9 @@ public:
 
 	void StopVideoStreamProcessing();
 #endif
+
+	void Yuv2Rgba(const unsigned char* BufferYUV, uint32 Width, uint32 Height);
+
+private:
+	unsigned char BufferRGBA[640 * 480 * 4];
 };
