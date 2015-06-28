@@ -19,6 +19,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Drone Control")
 	void CommandDroneToSetGimbalRotation(FRotator const & GimbalRotation);
 
+	UPROPERTY(Category = Debug, VisibleAnywhere, BlueprintReadWrite)
+	FRotator DebugFakeGimbalRotation;
+
 	UDroneApiComponent();
 
 	virtual void BeginPlay() override;

@@ -3,10 +3,6 @@
 #include "AerialExplorerVR.h"
 #include "DroneApiComponent.h"
 
-#if PLATFORM_ANDROID != 1
-FRotator * DebugFakeGimbalRotation = new FRotator;
-#endif
-
 UDroneApiComponent::UDroneApiComponent() :
 	LastGimbalRotation(ForceInitToZero)
 {
@@ -42,7 +38,7 @@ void UDroneApiComponent::UpdateGimbalRotation()
 			GimbalRotation.Pitch, GimbalRotation.Roll, GimbalRotation.Yaw);
 	}
 #else
-	OnGimbalRotationChanged.Broadcast(*DebugFakeGimbalRotation);
+	OnGimbalRotationChanged.Broadcast(DebugFakeGimbalRotation);
 #endif
 }
 
@@ -54,7 +50,5 @@ void UDroneApiComponent::CommandDroneToSetGimbalRotation(FRotator const & Rotati
 	GimbalRotation.Roll = Rotation.Roll;
 	GimbalRotation.Yaw = Rotation.Yaw;
 	FAndroidMisc::CommandDroneToSetGimbalRotation(GimbalRotation);
-#else
-	(*DebugFakeGimbalRotation) = Rotation;
 #endif
 }

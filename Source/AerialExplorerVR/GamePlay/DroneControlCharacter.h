@@ -16,13 +16,10 @@ public:
 	UCameraComponent* Camera;
 
 	UPROPERTY(Category = Drone, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	USpringArmComponent* SpringArm;
-
-	UPROPERTY(Category = Drone, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* ScreenMesh;
-
-	UPROPERTY(Category = Drone, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	UDroneApiComponent *DroneApi;
+
+	UPROPERTY(Category = Drone, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+	class ARotatingVideoScreenActor* RotatingVideoScreenActor;
 
 	ADroneControlCharacter(const FObjectInitializer& ObjectInitializer);
 
@@ -32,9 +29,13 @@ public:
 
 	virtual void Tick( float DeltaSeconds ) override;
 
+	void DecreaseScreenDistance();
+
+	void IncreaseScreenDistance();
+
 	void OnGimbalRotationChanged(FRotator GimbalRotation);
 
 private:
-	class UMaterial* MediaTextureMaterial;
-	class UDroneLiveVideoMediaTexture* MediaTexture;
+	bool HMD_FirstUpdate;
+	FRotator HMD_LastDeviceRotation;
 };
