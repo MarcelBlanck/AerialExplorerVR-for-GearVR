@@ -36,11 +36,11 @@ void UDroneLiveVideoMediaTexture::Yuv2Rgba(const unsigned char* BufferYUV, uint3
 
 	int32 frameSize = Width * Height;
 	int32 y, u, v, r, g, b;
-	int32 a0, a1, a2, a3, a4;
+	//int32 a0, a1, a2, a3, a4;
 
-	for (int32 row = 0; row < Height; ++row)
+	for (uint32 row = 0; row < Height; ++row)
 	{
-		for (int32 column = 0; column < Width; ++column)
+		for (uint32 column = 0; column < Width; ++column)
 		{
 			y = BufferYUV[row * Width + column];
 			v = BufferYUV[frameSize + (row >> 1) * Width + (column & ~1) + 0];
