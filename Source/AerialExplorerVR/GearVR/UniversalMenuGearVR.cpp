@@ -22,7 +22,7 @@ void UUniversalMenuGearVR::BeginPlay()
 	Owner->InputComponent->BindKey(EKeys::Android_Back, EInputEvent::IE_Pressed, this, &UUniversalMenuGearVR::BackPressed).bConsumeInput = false;
 	Owner->InputComponent->BindKey(EKeys::Android_Back, EInputEvent::IE_Released, this, &UUniversalMenuGearVR::BackReleased).bConsumeInput = false;
 #else
-	// Allow debugging with the BackSpace key
+	// Allow debugging with the key
 	UE_LOG(Generic, Warning, TEXT("UUniversalMenuGearVR registering debug back key E"));
 	Owner->InputComponent->BindKey(EKeys::B, EInputEvent::IE_Pressed, this, &UUniversalMenuGearVR::BackPressed).bConsumeInput = false;
 	Owner->InputComponent->BindKey(EKeys::B, EInputEvent::IE_Released, this, &UUniversalMenuGearVR::BackReleased).bConsumeInput = false;

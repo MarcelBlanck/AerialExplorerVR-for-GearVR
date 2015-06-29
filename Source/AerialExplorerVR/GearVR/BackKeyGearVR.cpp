@@ -21,10 +21,10 @@ void UBackKeyGearVR::BeginPlay()
 	Owner->InputComponent->BindKey(EKeys::Android_Back, EInputEvent::IE_Pressed, this, &UBackKeyGearVR::BackPressed).bConsumeInput = false;
 	Owner->InputComponent->BindKey(EKeys::Android_Back, EInputEvent::IE_Released, this, &UBackKeyGearVR::BackReleased).bConsumeInput = false;
 #else
-	// Allow debugging with Backspace key
+	// Allow debugging with key
 	UE_LOG(Generic, Warning, TEXT("UBackKeyGearVR registering debug back key E"));
-	Owner->InputComponent->BindKey(EKeys::E, EInputEvent::IE_Pressed, this, &UBackKeyGearVR::BackPressed).bConsumeInput = false;
-	Owner->InputComponent->BindKey(EKeys::E, EInputEvent::IE_Released, this, &UBackKeyGearVR::BackReleased).bConsumeInput = false;
+	//Owner->InputComponent->BindKey(EKeys::E, EInputEvent::IE_Pressed, this, &UBackKeyGearVR::BackPressed).bConsumeInput = false;
+	//Owner->InputComponent->BindKey(EKeys::E, EInputEvent::IE_Released, this, &UBackKeyGearVR::BackReleased).bConsumeInput = false;
 #endif
 
 	SetComponentTickEnabled(false);

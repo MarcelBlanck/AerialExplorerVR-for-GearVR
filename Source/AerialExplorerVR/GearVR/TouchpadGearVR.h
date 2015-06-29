@@ -6,7 +6,7 @@
 #include "TouchpadGearVR.generated.h"
 
 
-UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
+UCLASS( ClassGroup=(GearVR), meta=(BlueprintSpawnableComponent) )
 class AERIALEXPLORERVR_API UTouchpadGearVR : public UActorComponent
 {
 	GENERATED_BODY()
