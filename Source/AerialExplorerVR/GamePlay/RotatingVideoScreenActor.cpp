@@ -47,8 +47,8 @@ ARotatingVideoScreenActor::ARotatingVideoScreenActor(const FObjectInitializer& O
 	ScreenMesh->SetRelativeRotation(FRotator(0.f, -90.f, -90.f));
 	ScreenMesh->SetRelativeLocation(FVector(TargetScreenDistance, 0.f, 0.f));
 
-	ConstructorHelpers::FObjectFinder<UMaterial> MediaTextureMatFinder(TEXT("Material'/Game/Eperimental/MAT_ExperimentalMediaPlayer.MAT_ExperimentalMediaPlayer'"));
-	checkf(MediaTextureMatFinder.Object, TEXT("Did not find Material'/Game/Eperimental/MAT_ExperimentalMediaPlayer.MAT_ExperimentalMediaPlayer' - Maybe the asset was moved or renamed."));
+	ConstructorHelpers::FObjectFinder<UMaterial> MediaTextureMatFinder(TEXT("Material'/Game/Eperimental/MAT_NV21_TO_RGB_OneTex.MAT_NV21_TO_RGB_OneTex'"));
+	checkf(MediaTextureMatFinder.Object, TEXT("Did not find Material'/Game/Eperimental/MAT_NV21_TO_RGB_OneTex.MAT_NV21_TO_RGB_OneTex' - Maybe the asset was moved or renamed."));
 	MediaTextureMaterial = MediaTextureMatFinder.Object;
 
 #if PLATFORM_ANDROID == 1
