@@ -53,10 +53,6 @@ ARotatingVideoScreenActor::ARotatingVideoScreenActor(const FObjectInitializer& O
 
 #if PLATFORM_ANDROID == 1
 	MediaTexture = NewObject<UDroneLiveVideoMediaTexture>(this, TEXT("DroneLiveVideoMediaTexture"));
-	MediaTexture->AddressX = TA_Clamp;
-	MediaTexture->AddressY = TA_Clamp;
-	MediaTexture->ClearColor = FLinearColor::Black;
-	MediaTexture->VideoTrackIndex = 0U;
 #endif
 }
 
@@ -69,7 +65,7 @@ void ARotatingVideoScreenActor::BeginPlay()
 
 #if PLATFORM_ANDROID == 1
 	UMaterialInstanceDynamic* MediaTextureMaterialInstance = UMaterialInstanceDynamic::Create(MediaTextureMaterial, this);
-	MediaTextureMaterialInstance->SetTextureParameterValue("MediaTexture", Cast<UTexture>(MediaTexture));
+	MediaTextureMaterialInstance->SetTextureParameterValue("YUVATexture", Cast<UTexture>(MediaTexture));
 	MediaTexture->StartVideoStreamProcessing();
 	ScreenMesh->SetMaterial(0, MediaTextureMaterialInstance);
 #endif

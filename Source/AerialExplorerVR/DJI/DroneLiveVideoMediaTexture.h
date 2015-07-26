@@ -27,6 +27,11 @@ public:
 	void StopVideoStreamProcessing();
 #endif
 
+	TEnumAsByte<EPixelFormat> GetFormat() const
+	{
+		return PF_R8G8B8A8;
+	}
+
 	void Yuv2Rgba(const unsigned char* BufferYUV, uint32 Width, uint32 Height);
 
 private:
