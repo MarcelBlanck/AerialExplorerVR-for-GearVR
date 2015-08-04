@@ -20,7 +20,6 @@ UDroneLiveVideoMediaTexture::~UDroneLiveVideoMediaTexture()
 void UDroneLiveVideoMediaTexture::OnVideoFrameAvailable(const void* Buffer, uint32 BufferSize, uint32 Width, uint32 Height, uint32 DurationMs, uint32 TimeMs)
 {
 	Yuv2Rgba(static_cast<const unsigned char *>(Buffer), Width, Height);
-	UE_LOG(Generic, Warning, TEXT("UDroneLiveVideoMediaTexture::OnVideoFrameAvailable after conversion %p %d - %d %d %d %d"), Buffer, BufferSize, (int32)BufferRGBA[5], (int32)BufferRGBA[6], (int32)BufferRGBA[7], (int32)BufferRGBA[8]);
 	OnCustomVideoFrameAvailable(static_cast<const void *>(BufferRGBA), (640 * 480 * 4), 640, 480, DurationMs, TimeMs);
 }
 
