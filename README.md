@@ -1,4 +1,4 @@
-[![ArialExplorer VR](AerialExplorerSplash.tif)](https://github.com/MarcelBlanck/AerialExplorerVR-DJI-Developer-Challenge-2015/blob/master/Art/Splash/AerialExplorerSplash.tif)
+[![ArialExplorerVR Logo](AerialExplorerSplash.png)](https://raw.githubusercontent.com/MarcelBlanck/AerialExplorerVR-DJI-Developer-Challenge-2015/master/Art/Splash/AerialExplorerSplash.png)
 
 # AerialExplorerVR-DJI-Developer-Challenge-2015
 
@@ -19,4 +19,4 @@ There were plans to do much more with this, but actually we never heard again fr
 If this code helps you in any way let me know, I would be glad to hear about it.
 
 
-NOTE: Actually to build this or see the Android and UE4 changes, a patchset for the Engine is needed, I will see if I can find it again, somehow it's now lost over the years =/
+NOTE: Actually to build this or see the many Android and UE4 changes, a patchset for the Engine is needed, I will see if I can find it again, somehow it's now lost over the years, I hope Boke finds a copy =/
