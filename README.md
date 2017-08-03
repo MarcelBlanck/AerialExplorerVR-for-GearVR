@@ -1,4 +1,4 @@
-![ArialExplorerVR Logo](https://raw.githubusercontent.com/MarcelBlanck/AerialExplorerVR-DJI-Developer-Challenge-2015/master/Art/Splash/AerialExplorerSplash.png)
+<div style="text-align:center"><img src ="https://raw.githubusercontent.com/MarcelBlanck/AerialExplorerVR-DJI-Developer-Challenge-2015/master/Art/Splash/AerialExplorerSplash.png" /></div>
 
 # AerialExplorerVR-DJI-Developer-Challenge-2015
 
