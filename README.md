@@ -1,3 +1,5 @@
+[![ArialExplorer VR](AerialExplorerSplash.tif)](https://github.com/MarcelBlanck/AerialExplorerVR-DJI-Developer-Challenge-2015/blob/master/Art/Splash/AerialExplorerSplash.tif)
+
 # AerialExplorerVR-DJI-Developer-Challenge-2015
 
 This was done for the DJI Drone Developer Challenge 2015. It was done by my friend https://github.com/boke and me.
@@ -15,3 +17,6 @@ So, after one month we had solved the core problems and the next work would have
 There were plans to do much more with this, but actually we never heard again from the DJI Developer Challenge 2015, there was no winner officially announced, but we were allowed to keep the Phantom 4 Pro Drone for 1k€, so we were happy and ok with it =)
 
 If this code helps you in any way let me know, I would be glad to hear about it.
+
+
+NOTE: Actually to build this or see the Android and UE4 changes, a patchset for the Engine is needed, I will see if I can find it again, somehow it's now lost over the years =/
